@@ -1,0 +1,102 @@
+<head>
+  <style>
+    /* ------------------ Fees Card Container ------------------ */
+.fee-card {
+    background: #ffffff;
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    max-width: 600px;
+    width: 90%;
+    margin: 40px auto;
+    text-align: center;
+    animation: fadeIn 1s ease-out;
+}
+
+/* ------------------ Fees Card Title ------------------ */
+.fee-card h2 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.fee-card h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #f1c40f, #f39c12);
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+/* ------------------ Table Styling ------------------ */
+.table_fee {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 1rem;
+}
+
+.table_fee th,
+.table_fee td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.table_fee th {
+    background-color: #f1c40f;
+    color: #fff;
+    font-weight: 600;
+}
+
+.table_fee tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.table_fee tr:hover {
+    background-color: rgba(241,196,15,0.1);
+    transform: scale(1.02);
+    transition: all 0.3s ease;
+}
+
+/* ------------------ Fade-in Animation ------------------ */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ------------------ Responsive ------------------ */
+@media (max-width: 600px) {
+    .table_fee th, .table_fee td {
+        padding: 10px 8px;
+        font-size: 0.9rem;
+    }
+
+    .fee-card {
+        padding: 25px 20px;
+    }
+
+    .fee-card h2::after {
+        width: 50px;
+    }
+}
+
+  </style>
+</head>
+{% extends "base.html" %}
+{% block title %}Fees Structure{% endblock %}
+{% block content %}
+
+<section class="fee-card">
+  <h2>Fees Structure</h2>
+  <table class="table_fee">
+    <tr><th>Course</th><th>Amount</th></tr>
+    {% for course, amount in fees.items() %}
+      <tr><td>{{ course }}</td><td>{{ amount }}</td></tr>
+    {% endfor %}
+  </table>
+</section>
+{% endblock %}

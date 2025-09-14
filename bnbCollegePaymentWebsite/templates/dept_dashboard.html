@@ -1,0 +1,24 @@
+
+{% extends "base.html" %}
+{% block title %}Department Dashboard{% endblock %}
+{% block content %}
+  <h2>Department Dashboard</h2>
+  <h3>All Payments</h3>
+  {% if payments %}
+    <table>
+      <tr><th>ID</th><th>Student</th><th>Roll</th><th>Amount</th><th>Status</th><th>Date</th></tr>
+      {% for p in payments %}
+        <tr>
+          <td>{{ p.id }}</td>
+          <td>{{ p.student_name }}</td>
+          <td>{{ p.roll_no }}</td>
+          <td>{{ p.amount }}</td>
+          <td>{{ p.status }}</td>
+          <td>{{ p.date }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>No payments recorded.</p>
+  {% endif %}
+{% endblock %}
